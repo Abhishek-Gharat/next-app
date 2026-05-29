@@ -1,19 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
-import { Providers } from "./providers";
+import { logout } from "@/app/actions/auth";
+import { getCurrentUser } from "@/lib/auth";
 
 export const metadata = {
   title: "Products Store",
   description: "Products Store App",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const user = await getCurrentUser();
+
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <header
+        <header
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -44,10 +46,30 @@ export default function RootLayout({ children }) {
             style={{
               display: "flex",
               gap: "20px",
+              alignItems: "center",
             }}
           >
             <Link href="/">Home</Link>
             <Link href="/products">Products</Link>
+            {user ? (
+              <form action={logout}>
+                <button
+                  type="submit"
+                  style={{
+                    padding: "8px 12px",
+                    background: "#111827",
+                    color: "white",
+                    border: "0",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Logout
+                </button>
+              </form>
+            ) : (
+              <Link href="/login?callbackUrl=/products">Login</Link>
+            )}
           </nav>
         </header>
 
@@ -69,7 +91,6 @@ export default function RootLayout({ children }) {
         >
           © 2026 Products Store. All Rights Reserved.
         </footer>
-        </Providers>
       </body>
     </html>
   );

@@ -9,30 +9,19 @@ export default async function LoginPage({ searchParams }) {
   const hasError = params?.error === "invalid";
 
   return (
-    <div
-      style={{
-        maxWidth: "420px",
-        margin: "60px auto",
-        padding: "28px",
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-      }}
-    >
+    <div className="login-panel">
       <h2>Login</h2>
+      <p className="hint">
+        Sign in to view the products catalog.
+      </p>
 
       {hasError && (
-        <p style={{ color: "crimson" }}>
+        <p className="error-text">
           Invalid username or password.
         </p>
       )}
 
-      <form
-        action={login}
-        style={{
-          display: "grid",
-          gap: "14px",
-        }}
-      >
+      <form action={login}>
         <input type="hidden" name="callbackUrl" value={callbackUrl} />
 
         <label>
@@ -42,12 +31,6 @@ export default async function LoginPage({ searchParams }) {
             type="text"
             required
             autoComplete="username"
-            style={{
-              display: "block",
-              width: "100%",
-              padding: "10px",
-              marginTop: "6px",
-            }}
           />
         </label>
 
@@ -58,31 +41,15 @@ export default async function LoginPage({ searchParams }) {
             type="password"
             required
             autoComplete="current-password"
-            style={{
-              display: "block",
-              width: "100%",
-              padding: "10px",
-              marginTop: "6px",
-            }}
           />
         </label>
 
-        <button
-          type="submit"
-          style={{
-            padding: "10px 14px",
-            background: "#111827",
-            color: "white",
-            border: "0",
-            borderRadius: "6px",
-            cursor: "pointer",
-          }}
-        >
+        <button type="submit">
           Login
         </button>
       </form>
 
-      <p style={{ marginTop: "18px", color: "#555" }}>
+      <p className="hint">
         Use username <strong>admin</strong> and password{" "}
         <strong>123456</strong>.
       </p>

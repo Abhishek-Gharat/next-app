@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const revalidate = 60;
 
 async function getProduct(id) {
@@ -29,24 +31,33 @@ export default async function ProductDetailsPage({
   const product = await getProduct(id);
 
   return (
-    <div
-      style={{
-        border: "2px solid black",
-        padding: "20px",
-      }}
-    >
+    <article className="details-panel">
+      <div className="product-image-wrap">
+        <Image
+          src="/product.jpg"
+          alt={product.title}
+          width={520}
+          height={340}
+          priority
+          className="product-image"
+        />
+      </div>
+
       <h2>{product.title}</h2>
 
       <p>{product.description}</p>
 
-      <p>
-        <strong>Price:</strong> ${product.price}
-      </p>
+      <div className="product-meta">
+        <div className="meta-item">
+          <strong>Price</strong>
+          ${product.price}
+        </div>
 
-      <p>
-        <strong>Category:</strong>{" "}
-        {product.category}
-      </p>
-    </div>
+        <div className="meta-item">
+          <strong>Category</strong>
+          {product.category}
+        </div>
+      </div>
+    </article>
   );
 }

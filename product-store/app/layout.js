@@ -15,22 +15,8 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <header
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "20px",
-            borderBottom: "1px solid #ddd",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
+        <header className="site-header">
+          <div className="brand">
             <Image
               src="/logo.jpg"
               alt="Products Store Logo"
@@ -42,28 +28,12 @@ export default async function RootLayout({ children }) {
             <h1>Products Store</h1>
           </div>
 
-          <nav
-            style={{
-              display: "flex",
-              gap: "20px",
-              alignItems: "center",
-            }}
-          >
+          <nav className="site-nav">
             <Link href="/">Home</Link>
             <Link href="/products">Products</Link>
             {user ? (
               <form action={logout}>
-                <button
-                  type="submit"
-                  style={{
-                    padding: "8px 12px",
-                    background: "#111827",
-                    color: "white",
-                    border: "0",
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                  }}
-                >
+                <button type="submit" className="nav-button">
                   Logout
                 </button>
               </form>
@@ -73,22 +43,9 @@ export default async function RootLayout({ children }) {
           </nav>
         </header>
 
-        <main
-          style={{
-            padding: "20px",
-            minHeight: "80vh",
-          }}
-        >
-          {children}
-        </main>
+        <main className="site-main">{children}</main>
 
-        <footer
-          style={{
-            textAlign: "center",
-            padding: "20px",
-            borderTop: "1px solid #ddd",
-          }}
-        >
+        <footer className="site-footer">
           © 2026 Products Store. All Rights Reserved.
         </footer>
       </body>

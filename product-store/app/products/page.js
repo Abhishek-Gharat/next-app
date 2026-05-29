@@ -19,18 +19,26 @@ export default async function ProductsPage() {
   const data = await getProducts();
 
   return (
-    <div>
-      <h1>Products</h1>
+    <section>
+      <div className="products-header">
+        <div>
+          <h1 className="page-title">Products</h1>
+          <p className="page-lede">
+            Explore the current product catalog.
+          </p>
+        </div>
+      </div>
 
-      <ul>
+      <ul className="product-grid">
         {data.products.map((product) => (
-          <li key={product.id}>
+          <li key={product.id} className="product-card">
             <Link href={`/products/${product.id}`}>
+              <span>Product #{product.id}</span>
               {product.title}
             </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

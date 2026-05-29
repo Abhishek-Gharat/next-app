@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const revalidate = 60;
 
 export default async function ProductDetailsPage({
@@ -9,10 +11,6 @@ export default async function ProductDetailsPage({
     `https://dummyjson.com/products/${id}`
   );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch product");
-  }
-
   const product = await res.json();
 
   return (
@@ -22,6 +20,13 @@ export default async function ProductDetailsPage({
         padding: "20px",
       }}
     >
+      <Image
+        src="/product.jpg"
+        alt="Product"
+        width={300}
+        height={200}
+      />
+
       <h2>{product.title}</h2>
 
       <p>{product.description}</p>
@@ -32,10 +37,6 @@ export default async function ProductDetailsPage({
 
       <p>
         <strong>Category:</strong> {product.category}
-      </p>
-
-      <p>
-        <strong>Rating:</strong> {product.rating}
       </p>
     </div>
   );

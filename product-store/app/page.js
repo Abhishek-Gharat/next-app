@@ -1,7 +1,12 @@
+export const metadata = {
+  title: "This is Homepage",
+  description: "Welcome to my Next.js website",
+};
+
 export default function HomePage() {
   return (
-    <main>
-      <h2>Welcome to the Products Store</h2>
-    </main>
+    <div>
+      <h1>Homepage</h1>
+    </div>
   );
 }

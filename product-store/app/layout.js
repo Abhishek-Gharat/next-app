@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "Products Store",
@@ -11,7 +12,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <header
+        <Providers>
+          <header
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -67,6 +69,7 @@ export default function RootLayout({ children }) {
         >
           © 2026 Products Store. All Rights Reserved.
         </footer>
+        </Providers>
       </body>
     </html>
   );

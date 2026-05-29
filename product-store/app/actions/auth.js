@@ -1,39 +1,11 @@
 "use server";
 
-import { cookies } from "next/headers";
-import { createToken } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { signOut as nextAuthSignOut } from "@/app/api/auth/[...nextauth]/route";
 
-export async function login(formData) {
-  const username = formData.get("username");
-  const password = formData.get("password");
-
-  if (
-    username === "admin" &&
-    password === "123456"
-  ) {
-    const token = await createToken({
-      username,
-    });
-
-    const cookieStore = await cookies();
-
-    cookieStore.set("token", token, {
-      httpOnly: true,
-      secure: false,
-      path: "/",
-    });
-
-    redirect("/dashboard");
-  }
-
-  throw new Error("Invalid credentials");
-}
+// This file is kept for reference but NextAuth handles sign-in/sign-out
+// Use the NextAuth functions directly from the route handler
 
 export async function logout() {
-  const cookieStore = await cookies();
-
-  cookieStore.delete("token");
-
-  redirect("/login");
+  // Call NextAuth signOut
+  await nextAuthSignOut({ redirectTo: "/login" });
 }

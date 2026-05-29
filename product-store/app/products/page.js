@@ -1,15 +1,16 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Products Store - Products List",
+  description: "Browse all products",
+};
+
 export const revalidate = 60;
 
 async function getProducts() {
   const res = await fetch(
     "https://dummyjson.com/products"
   );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
-  }
 
   return res.json();
 }
@@ -19,7 +20,7 @@ export default async function ProductsPage() {
 
   return (
     <div>
-      <h2>Products</h2>
+      <h1>Products</h1>
 
       <ul>
         {data.products.map((product) => (

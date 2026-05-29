@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
     <main>
-      <h1>Welcome to the Products Store</h1>
+      <h2>Welcome to the Products Store</h2>
     </main>
   );
 }
